@@ -1,7 +1,10 @@
 package one.digital.parking.controller.ParkingDTO;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.time.LocalDateTime;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ParkingDTO {
 
     private String id;
