@@ -1,25 +1,33 @@
 package one.digital.parking.controller;
 
+import one.digital.parking.controller.ParkingDTO.ParkingDTO;
+import one.digital.parking.controller.ParkingMapper.ParkingMapper;
 import one.digital.parking.model.Parking;
+import one.digital.parking.sevice.ParkingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
 @RequestMapping("parking")
 public class ParkingController {
 
-    @GetMapping
-    public List<Parking> findAll(){
-        var parking = new Parking();
-        parking.setColor("Preto");
-        parking.setLicense("MSS-1111");
-        parking.setModel("Fiat Argo");
-        parking.setState("AM");
+//injeção de dependencia por construtor
+    private final ParkingService parkingService;
+    private final ParkingMapper parkingMapper;
 
-        return Arrays.asList(parking, parking);
+    public ParkingController(ParkingService parkingService, ParkingMapper parkingMapper) {
+        this.parkingService = parkingService;
+        this.parkingMapper = parkingMapper;
+    }
+
+
+    @GetMapping
+    public List<ParkingDTO> findAll(){
+        List<Parking> parkingList = parkingService.findAll();
+        List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);
+        return result;
     }
 }
