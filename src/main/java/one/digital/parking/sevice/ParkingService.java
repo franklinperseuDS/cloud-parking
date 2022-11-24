@@ -4,6 +4,7 @@ import one.digital.parking.exception.ParkingNotFoundException;
 import one.digital.parking.model.Parking;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -59,5 +60,15 @@ public class ParkingService {
         parking.setColor(parkingCreate.getColor());
         parkingMap.replace(id, parking);
         return  parking;
+    }
+
+    public Parking exit(String id) {
+        Parking parking = findById(id);
+        parking.setExitDate(LocalDateTime.now());
+
+        // implementar o calculo em cima do tempo que ficou na garagem
+        // var dif = parking.getEntryDate().getTime() - parking.getExitDate().getTime();
+
+        return parking;
     }
 }
