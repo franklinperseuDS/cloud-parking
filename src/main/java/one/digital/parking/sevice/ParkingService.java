@@ -1,5 +1,6 @@
 package one.digital.parking.sevice;
 
+import one.digital.parking.exception.ParkingNotFoundException;
 import one.digital.parking.model.Parking;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +23,16 @@ public class ParkingService {
     }
 
     public List<Parking> findAll(){
+
         return parkingMap.values().stream().collect(Collectors.toList());
     }
+
     public Parking findById(String id){
-        return parkingMap.get(id);
+        Parking parking = parkingMap.get(id);
+        if (parking == null) {
+            throw new ParkingNotFoundException(id);
+        }
+        return parking;
     }
 
 
