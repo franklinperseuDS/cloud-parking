@@ -1,5 +1,7 @@
 package one.digital.parking.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import one.digital.parking.controller.dto.ParkingCreateDTO;
 import one.digital.parking.controller.dto.ParkingDTO;
 import one.digital.parking.controller.ParkingMapper.ParkingMapper;
@@ -13,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("parking")
+@Api(tags = "Parking Controller")
 public class ParkingController {
 
 //injeção de dependencia por construtor
@@ -26,6 +29,7 @@ public class ParkingController {
 
 
     @GetMapping
+    @ApiOperation("Find All Parkings")
     public ResponseEntity<List<ParkingDTO>> findAll(){
         List<Parking> parkingList = parkingService.findAll();
         List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);
