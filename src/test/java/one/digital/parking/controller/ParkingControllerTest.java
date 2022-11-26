@@ -14,7 +14,7 @@ import org.springframework.http.MediaType;
 
 import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ParkingControllerTest {
+class ParkingControllerTest  extends AbstractContainerBase{
 
     @LocalServerPort
     private int randomPort;
@@ -33,23 +33,23 @@ class ParkingControllerTest {
                 .statusCode(HttpStatus.OK.value())  ;
     }
 
-//    @Test
-//    @Order(2)
-//    void whenCreateThenCheckIsCreated() {
-//
-//        var createDTO = new ParkingCreateDTO();
-//        createDTO.setColor("Amarelo");
-//        createDTO.setLicense("WRT-5521");
-//        createDTO.setModel("BRASILIA");
-//        createDTO.setState("AM");
-//        RestAssured.given()
-//                .when()
-//                .contentType(MediaType.APPLICATION_JSON_VALUE)
-//                .body(createDTO)
-//                .post("/parking")
-//                .then()
-//                .statusCode(HttpStatus.CREATED.value())
-//                .body("license", Matchers.equalTo("WRT-5521"))
-//                .body("color", Matchers.equalTo("AMARELO"));
-//    }
+    @Test
+    @Order(2)
+    void whenCreateThenCheckIsCreated() {
+
+        var createDTO = new ParkingCreateDTO();
+        createDTO.setColor("Amarelo");
+        createDTO.setLicense("WRT-5521");
+        createDTO.setModel("BRASILIA");
+        createDTO.setState("AM");
+        RestAssured.given()
+                .when()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(createDTO)
+                .post("/parking")
+                .then()
+                .statusCode(HttpStatus.CREATED.value())
+                .body("license", Matchers.equalTo("WRT-5521"))
+                .body("color", Matchers.equalTo("Amarelo"));
+    }
 }

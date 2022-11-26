@@ -1,4 +1,4 @@
-package one.digital.parking.controller;
+package one.digital.parking.service;
 
 import org.junit.jupiter.api.Test;
 
