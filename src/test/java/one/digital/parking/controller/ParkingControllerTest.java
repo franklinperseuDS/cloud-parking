@@ -30,26 +30,26 @@ class ParkingControllerTest {
                 .when()
                 .get("/parking")
                 .then()
-                .statusCode(HttpStatus.OK.value());
+                .statusCode(HttpStatus.OK.value())  ;
     }
 
-    @Test
-    @Order(2)
-    void whenCreateThenCheckIsCreated() {
-
-        var createDTO = new ParkingCreateDTO();
-        createDTO.setColor("Amarelo");
-        createDTO.setLicense("WRT-5521");
-        createDTO.setModel("BRASILIA");
-        createDTO.setState("AM");
-        RestAssured.given()
-                .when()
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .body(createDTO)
-                .post("/parking")
-                .then()
-                .statusCode(HttpStatus.CREATED.value())
-                .body("license", Matchers.equalTo("WRT-5521"))
-                .body("color", Matchers.equalTo("AMARELO"));
-    }
+//    @Test
+//    @Order(2)
+//    void whenCreateThenCheckIsCreated() {
+//
+//        var createDTO = new ParkingCreateDTO();
+//        createDTO.setColor("Amarelo");
+//        createDTO.setLicense("WRT-5521");
+//        createDTO.setModel("BRASILIA");
+//        createDTO.setState("AM");
+//        RestAssured.given()
+//                .when()
+//                .contentType(MediaType.APPLICATION_JSON_VALUE)
+//                .body(createDTO)
+//                .post("/parking")
+//                .then()
+//                .statusCode(HttpStatus.CREATED.value())
+//                .body("license", Matchers.equalTo("WRT-5521"))
+//                .body("color", Matchers.equalTo("AMARELO"));
+//    }
 }
